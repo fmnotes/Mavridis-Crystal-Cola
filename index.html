@@ -1,143 +1,78 @@
-HTML
 <!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Crystal Cola">
     <meta name="mobile-web-app-capable" content="yes">
-    
-    <title>Mavridis Crystal Cola Pro</title>
-    
+    <meta name="theme-color" content="#0a0e14">
+    <link rel="apple-touch-icon" href="crystal_cola.jpg">
+
     <style>
-        :root {
-            --main-blue: #00d4ff;
-            --dark-bg: #0a0e14;
-            --card-bg: #161b22;
-        }
-
-        /* Full screen χωρίς περιθώρια για αίσθηση app */
+        :root { --main-blue: #00d4ff; --dark-bg: #0a0e14; --card-bg: #161b22; }
+        
         body { 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
-            background: var(--dark-bg); 
-            color: #eee; 
-            text-align: center; 
-            padding: 10px; 
-            margin: 0;
-            overflow-x: hidden;
+            font-family: -apple-system, system-ui, sans-serif;
+            background: var(--dark-bg); color: #eee; text-align: center; margin: 0; 
+            padding: env(safe-area-inset-top) 15px 40px;
+            height: 100vh; overflow-y: auto;
         }
 
-        .container { 
-            background: var(--card-bg); 
-            padding: 20px; 
-            border-radius: 25px; 
-            max-width: 480px; 
-            margin: 10px auto; 
-            border: 1px solid #30363d; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-        }
+        .container { background: var(--card-bg); padding: 20px; border-radius: 25px; max-width: 450px; margin: 15px auto; border: 1px solid #30363d; }
+        .logo { width: 140px; height: 140px; margin: 0 auto 10px; border-radius: 25px; border: 2px solid var(--main-blue); object-fit: cover; display:block; }
+        input { width: 85%; padding: 15px; border-radius: 12px; border: 1px solid #30363d; background: #010409; color: var(--main-blue); font-size: 1.6rem; text-align: center; margin: 10px 0; outline: none; }
         
-        .logo { 
-            width: 140px; 
-            height: 140px; 
-            margin: 0 auto 10px; 
-            border-radius: 20px; 
-            border: 2px solid var(--main-blue); 
-            object-fit: cover; 
-            display: block;
-        }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; border-radius: 15px; overflow: hidden; }
+        td, th { padding: 12px; border-bottom: 1px solid #30363d; text-align: left; }
+        .val { color: var(--main-blue); font-weight: bold; text-align: right; font-family: monospace; font-size: 1.2rem; }
         
-        h2 { color: var(--main-blue); font-size: 1.3rem; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px; }
-        
-        .calc-section { 
-            background: #0d1117; 
-            padding: 15px; 
-            border-radius: 15px; 
-            margin: 12px 0; 
-            border-left: 5px solid var(--main-blue); 
-        }
-
-        input { 
-            width: 90%; 
-            padding: 12px; 
-            border-radius: 10px; 
-            border: 1px solid #30363d; 
-            background: #010409; 
-            color: var(--main-blue); 
-            font-size: 1.4rem; 
-            text-align: center; 
-            outline: none; 
-        }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; border-radius: 10px; overflow: hidden; }
-        th, td { padding: 12px; border-bottom: 1px solid #30363d; text-align: left; font-size: 0.9rem; }
-        th { color: var(--main-blue); font-size: 0.7rem; }
-        .val { color: var(--main-blue); font-weight: bold; text-align: right; font-family: monospace; font-size: 1.1rem; }
-        
-        .btn-group { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
-        button { padding: 12px 20px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
-        .btn-main { background: var(--main-blue); color: #000; }
-        .btn-secondary { background: #21262d; color: #c9d1d9; }
+        button { background: var(--main-blue); color: #000; padding: 18px; border: none; border-radius: 18px; font-weight: bold; width: 90%; margin-top: 20px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3); }
 
         #login-screen { display: block; padding-top: 15vh; }
         #app-screen { display: none; }
-
-        @media print { .no-print { display: none !important; } }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <img src="crystal_cola.jpg" alt="Crystal Cola" class="logo">
-    <h2>Mavridis Lab</h2>
-    <input type="password" id="pass" placeholder="Κωδικός">
-    <div class="btn-group">
-        <button onclick="checkPass()" class="btn-main">ΕΙΣΟΔΟΣ</button>
-    </div>
+    <img src="crystal_cola.jpg" class="logo">
+    <h2 style="color:var(--main-blue); letter-spacing: 2px;">MAVRIDIS LAB</h2>
+    <input type="password" id="pass" placeholder="ΚΩΔΙΚΟΣ">
+    <button onclick="checkPass()">ΕΙΣΟΔΟΣ</button>
 </div>
 
 <div id="app-screen" class="container">
-    <img src="crystal_cola.jpg" alt="Crystal Cola" class="logo">
-    <h2>💎 Crystal Cola Pro</h2>
-
-    <div class="calc-section no-print">
-        <label style="font-size: 0.7rem; color: #8b949e; display: block; margin-bottom: 5px;">ΛΙΤΡΑ ΣΟΔΑΣ (L)</label>
+    <img src="crystal_cola.jpg" class="logo">
+    <h2 style="color:var(--main-blue); letter-spacing: 2px;">CRYSTAL COLA PRO</h2>
+    
+    <div style="background:#0d1117; padding:15px; border-radius:20px; margin-bottom:15px; border-left:6px solid var(--main-blue)">
+        <small style="color:#8b949e; font-weight:bold">ΛΙΤΡΑ ΣΟΔΑΣ (L)</small><br>
         <input type="number" id="sodaLiters" placeholder="0" oninput="calculate()">
-        <p style="margin:10px 0;">Δόση: <span id="aroma-needed" class="val" style="font-size:1.6rem">0</span> <span class="val">ml</span></p>
+        <p style="margin:10px 0; font-size:1.1rem">ΔΟΣΗ: <span id="aroma-needed" class="val" style="font-size:1.8rem">0</span> <span class="val">ml</span></p>
     </div>
 
-    <div class="calc-section">
-        <label class="no-print" style="font-size: 0.7rem; color: #8b949e; display: block; margin-bottom: 5px;">ΓΡΑΜΜΑΡΙΑ ΒΑΣΗΣ (g)</label>
-        <input type="number" id="baseGrams" value="100" oninput="calculate()" class="no-print">
-        <p style="font-weight:bold; margin: 0; font-size: 0.9rem;">Συνταγή για <span id="baseGramsPrint">100</span>g</p>
+    <div style="background:#0d1117; padding:15px; border-radius:20px; margin-bottom:15px; border-left:6px solid #444">
+        <small style="color:#8b949e; font-weight:bold">ΓΡΑΜΜΑΡΙΑ ΒΑΣΗΣ (g)</small><br>
+        <input type="number" id="baseGrams" value="100" oninput="calculate()">
     </div>
 
     <table>
-        <thead>
-            <tr><th>Ουσία</th><th style="text-align:right">g</th></tr>
-        </thead>
+        <thead><tr style="color:var(--main-blue); font-size:0.75rem"><th>ΟΥΣΙΑ</th><th style="text-align:right">ΓΡΑΜΜΑΡΙΑ (g)</th></tr></thead>
         <tbody id="recipe-table"></tbody>
     </table>
-
-    <div class="btn-group no-print">
-        <button onclick="window.print()" class="btn-secondary">ΕΚΤΥΠΩΣΗ</button>
-        <button onclick="location.reload()" class="btn-secondary">ΕΞΟΔΟΣ</button>
-    </div>
+    <button onclick="location.reload()" style="background:#21262d; color:#eee; width:50%; padding:10px; margin-top:30px; font-size:0.8rem">ΕΞΟΔΟΣ / LOGOUT</button>
 </div>
 
 <script>
+    // ΣΥΝΤΑΓΗ CRYSTAL COLA
     const recipe = [
-        { name: "Citral", factor: 1.92 },
-        { name: "Cinnamic Aldehyde", factor: 0.48 },
-        { name: "Eugenol", factor: 0.32 },
-        { name: "Vanillin (Booster)", factor: 0.20 },
-        { name: "Ethyl Linalool", factor: 0.24 },
-        { name: "Limonene", factor: 0.20 },
-        { name: "Tea Tree Effect", factor: 0.56 },
-        { name: "Methyl Anthranilate", factor: 0.04 },
+        { name: "Citral", factor: 1.92 }, { name: "Cinnamic Aldehyde", factor: 0.48 },
+        { name: "Eugenol", factor: 0.32 }, { name: "Vanillin", factor: 0.20 },
+        { name: "Ethyl Linalool", factor: 0.24 }, { name: "Limonene", factor: 0.20 },
+        { name: "Tea Tree Effect", factor: 0.56 }, { name: "M. Anthranilate", factor: 0.04 },
         { name: "Fenchyl Alcohol", factor: 0.04 }
     ];
 
@@ -153,13 +88,17 @@ HTML
         let l = document.getElementById('sodaLiters').value || 0;
         document.getElementById('aroma-needed').innerText = (l * 1).toFixed(1);
         let g = document.getElementById('baseGrams').value || 0;
-        document.getElementById('baseGramsPrint').innerText = g;
         let ratio = g / 1000;
         let tableHTML = "";
         recipe.forEach(item => {
             tableHTML += `<tr><td>${item.name}</td><td class="val">${(item.factor * ratio).toFixed(3)}g</td></tr>`;
         });
         document.getElementById('recipe-table').innerHTML = tableHTML;
+    }
+
+    // ΚΟΛΠΟ ΓΙΑ ΚΑΘΑΡΙΣΜΟ CACHE
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(function() {});
     }
 </script>
 </body>
