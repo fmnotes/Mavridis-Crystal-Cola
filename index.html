@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mavridis Crystal Cola Pro</title>
+    <title>Mavridis Crystal Cola - Master Lab Pro</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/mavridis/Crystal-Cola-Pro/main/image_0.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/mavridis/Crystal-Cola-Pro/main/image_0.png">
+    
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #eee; text-align: center; padding: 10px; margin: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #eee; text-align: center; padding: 10px; margin: 0; }
         .container { background: #1e1e1e; padding: 15px; border-radius: 20px; max-width: 480px; margin: 10px auto; border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.1); }
         
-        /* Στυλ για τη νέα φωτογραφία Crystal Cola */
-        .logo-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 15px; /* Ελαφρώς στρογγυλεμένες γωνίες */
-            margin: 15px auto;
-            display: block;
-            border: 2px solid #00d4ff;
-            object-fit: cover;
-        }
+        /* Στυλ Φωτογραφίας/Λογοτύπου - Την κάναμε λίγο μεγαλύτερη */
+        .logo { width: 80px; height: 80px; margin-top: 10px; border-radius: 15px; border: 2px solid #00d4ff; }
         
         h2 { color: #00d4ff; font-size: 1.3rem; margin-top: 5px; }
         .calc-section { background: #252525; padding: 12px; border-radius: 12px; margin: 10px 0; border-bottom: 3px solid #00d4ff; }
         label { font-size: 0.85rem; color: #aaa; display: block; margin-bottom: 5px; }
-        input { width: 80%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: #00d4ff; font-size: 1.1rem; text-align: center; }
+        input[type="number"], input[type="password"] { width: 80%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: #00d4ff; font-size: 1.1rem; text-align: center; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
         th, td { padding: 8px; border-bottom: 1px solid #333; text-align: left; }
+        th { color: #00d4ff; }
         .val { color: #00d4ff; font-weight: bold; text-align: right; }
         
-        #notesArea { width: 90%; height: 80px; background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 8px; padding: 10px; margin-top: 10px; font-family: inherit; }
+        #notesArea { width: 90%; height: 80px; background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 8px; padding: 10px; margin-top: 10px; font-family: inherit; resize: none; }
         .btn-group { margin-top: 15px; display: flex; justify-content: space-around; gap: 10px; }
-        button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
         .btn-main { background: #00d4ff; color: #000; }
         .btn-secondary { background: #333; color: #eee; border: 1px solid #444; }
 
@@ -38,17 +34,22 @@
         #app-screen { display: none; }
 
         @media print {
-            .no-print, #login-screen, .btn-group, label, input, .logo-image { display: none !important; }
-            .container { border: none; }
-            #printNotesDisplay { display: block !important; }
+            .no-print, #login-screen, .btn-group, label, input { display: none !important; }
+            .container { border: none; box-shadow: none; }
+            h2 { color: black; border-bottom: 2px solid black; }
+            table { border: 1px solid black; color: black; }
+            th, td { border-bottom: 1px solid black; color: black; }
+            .val { color: black; }
+            #printNotesDisplay { display: block !important; margin-top: 20px; }
+            .logo { display: block; margin: auto; }
         }
-        #printNotesDisplay { display: none; text-align: left; margin-top: 20px; border-top: 1px solid #444; padding-top: 10px; }
+        #printNotesDisplay { display: none; text-align: left; font-size: 0.9rem; white-space: pre-wrap; }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <img src="crystal_cola.png" alt="Mavridis Crystal Cola" class="logo-image">
+    <img src="https://raw.githubusercontent.com/mavridis/Crystal-Cola-Pro/main/image_0.png" alt="Logo" class="logo">
     <h2>Mavridis Private Lab</h2>
     <input type="password" id="pass" placeholder="Κωδικός">
     <br>
@@ -56,8 +57,8 @@
 </div>
 
 <div id="app-screen" class="container">
-    <img src="crystal_cola.png" alt="Mavridis Crystal Cola" class="logo-image">
-    <h2>Crystal Cola Master Lab Pro</h2>
+    <img src="https://raw.githubusercontent.com/mavridis/Crystal-Cola-Pro/main/image_0.png" alt="Logo" class="logo">
+    <h2>💎 Crystal Cola Master Lab Pro</h2>
 
     <div class="calc-section no-print">
         <label>1. ΠΟΣΑ ΛΙΤΡΑ (L) ΣΟΔΑΣ ΘΑ ΦΤΙΑΞΕΙΣ;</label>
@@ -68,12 +69,12 @@
     <div class="calc-section">
         <label class="no-print">2. ΠΟΣΑ ΓΡΑΜΜΑΡΙΑ (g) ΤΕΛΙΚΗΣ ΒΑΣΗΣ ΘΕΛΕΙΣ;</label>
         <input type="number" id="baseGrams" value="100" oninput="calculate()" class="no-print">
-        <p id="printBaseDisplay" style="font-weight:bold;">Συνταγή για <span id="baseGramsPrint">100</span>g Βάσης</p>
+        <p id="printBaseDisplay" style="font-weight:bold; margin: 10px 0;">Συνταγή για <span id="baseGramsPrint">100</span>g Τελικής Βάσης</p>
     </div>
 
     <table>
         <thead>
-            <tr style="color:#00d4ff"><th>Ουσία</th><th style="text-align:right">Γραμμάρια (g)</th></tr>
+            <tr><th>Αρωματική Ουσία</th><th style="text-align:right">Γραμμάρια (g)</th></tr>
         </thead>
         <tbody id="recipe-table"></tbody>
     </table>
@@ -83,7 +84,7 @@
     </div>
     
     <div id="printNotesDisplay">
-        <strong>Σημειώσεις:</strong><br><span id="printNotesContent"></span>
+        <strong>Σημειώσεις Παρτίδας:</strong><br><span id="printNotesContent"></span>
     </div>
 
     <div class="btn-group no-print">
