@@ -3,114 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mavridis Crystal Cola - Master Lab Pro</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="https://img.icons8.com/fluency/180/experimental-beaker-fluency.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/fluency/32/experimental-beaker-fluency.png">
-    
+    <title>Mavridis Crystal Cola Pro</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #eee; text-align: center; padding: 10px; margin: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #eee; text-align: center; padding: 10px; margin: 0; }
         .container { background: #1e1e1e; padding: 15px; border-radius: 20px; max-width: 480px; margin: 10px auto; border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.1); }
         
-        /* Στυλ Φωτογραφίας/Λογοτύπου */
-        .logo { width: 60px; height: 60px; margin-top: 10px; }
+        /* Το νέο "Λογότυπο" με Emoji για να εμφανίζεται πάντα */
+        .logo-emoji { font-size: 50px; margin-top: 10px; display: block; }
         
         h2 { color: #00d4ff; font-size: 1.3rem; margin-top: 5px; }
         .calc-section { background: #252525; padding: 12px; border-radius: 12px; margin: 10px 0; border-bottom: 3px solid #00d4ff; }
         label { font-size: 0.85rem; color: #aaa; display: block; margin-bottom: 5px; }
-        input[type="number"], input[type="password"] { width: 80%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: #00d4ff; font-size: 1.1rem; text-align: center; }
+        input { width: 80%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: #00d4ff; font-size: 1.1rem; text-align: center; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
         th, td { padding: 8px; border-bottom: 1px solid #333; text-align: left; }
-        th { color: #00d4ff; }
         .val { color: #00d4ff; font-weight: bold; text-align: right; }
         
-        /* Στυλ για Σημειώσεις & Κουμπιά */
-        #notesArea { width: 90%; height: 80px; background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 8px; padding: 10px; margin-top: 10px; font-family: inherit; resize: none; }
+        #notesArea { width: 90%; height: 80px; background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 8px; padding: 10px; margin-top: 10px; font-family: inherit; }
         .btn-group { margin-top: 15px; display: flex; justify-content: space-around; gap: 10px; }
-        button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
+        button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
         .btn-main { background: #00d4ff; color: #000; }
-        .btn-main:hover { background: #00b3d6; }
         .btn-secondary { background: #333; color: #eee; border: 1px solid #444; }
-        .btn-secondary:hover { background: #444; }
 
         #login-screen { display: block; padding-top: 50px; }
         #app-screen { display: none; }
 
-        /* Στυλ Εκτύπωσης */
         @media print {
-            body { background: white; color: black; padding: 0; }
-            .container { border: none; box-shadow: none; max-width: 100%; margin: 0; padding: 0; }
-            .no-print, #login-screen, .btn-group, label, input, .logo { display: none !important; }
-            h2 { color: black; border-bottom: 2px solid black; padding-bottom: 5px; }
-            table { border: 1px solid black; }
-            th, td { border-bottom: 1px solid black; color: black; padding: 5px; }
-            .val { color: black; }
-            #printNotesDisplay { display: block !important; margin-top: 20px; border: 1px solid #ccc; padding: 10px; }
-            #notesArea { display: none; }
+            .no-print, #login-screen, .btn-group, label, input { display: none !important; }
+            .container { border: none; }
+            #printNotesDisplay { display: block !important; }
         }
-        #printNotesDisplay { display: none; text-align: left; font-size: 0.9rem; white-space: pre-wrap; }
+        #printNotesDisplay { display: none; text-align: left; margin-top: 20px; border-top: 1px solid #444; padding-top: 10px; }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <img src="https://img.icons8.com/fluency/96/experimental-beaker-fluency.png" alt="Logo" class="logo">
+    <span class="logo-emoji">⚗️</span>
     <h2>Mavridis Private Lab</h2>
-    <p style="font-size:0.9rem; color:#aaa;">Δώσε κωδικό πρόσβασης</p>
     <input type="password" id="pass" placeholder="Κωδικός">
     <br>
     <button onclick="checkPass()" class="btn-main">Είσοδος</button>
 </div>
 
 <div id="app-screen" class="container">
-    <img src="https://img.icons8.com/fluency/96/experimental-beaker-fluency.png" alt="Logo" class="logo">
-    <h2>💎 Crystal Cola Master Lab Pro</h2>
+    <span class="logo-emoji">💎</span>
+    <h2>Crystal Cola Master Lab Pro</h2>
 
     <div class="calc-section no-print">
         <label>1. ΠΟΣΑ ΛΙΤΡΑ (L) ΣΟΔΑΣ ΘΑ ΦΤΙΑΞΕΙΣ;</label>
         <input type="number" id="sodaLiters" placeholder="π.χ. 5" oninput="calculate()">
-        <p style="margin: 5px 0;">Πρόσθεσε: <span id="aroma-needed" class="val" style="font-size:1.4rem">0</span> <span class="val">ml Αρώματος</span></p>
+        <p>Πρόσθεσε: <span id="aroma-needed" class="val" style="font-size:1.4rem">0</span> <span class="val">ml Αρώματος</span></p>
     </div>
 
     <div class="calc-section">
         <label class="no-print">2. ΠΟΣΑ ΓΡΑΜΜΑΡΙΑ (g) ΤΕΛΙΚΗΣ ΒΑΣΗΣ ΘΕΛΕΙΣ;</label>
-        <div class="no-print">
-            <input type="number" id="baseGrams" value="100" oninput="calculate()">
-        </div>
-        <p id="printBaseDisplay" style="display:none; font-weight:bold; margin: 10px 0;">Συνταγή για <span id="baseGramsPrint">100</span>g Τελικής Βάσης (Αρώματος)</p>
+        <input type="number" id="baseGrams" value="100" oninput="calculate()" class="no-print">
+        <p id="printBaseDisplay" style="font-weight:bold;">Συνταγή για <span id="baseGramsPrint">100</span>g Βάσης</p>
     </div>
 
     <table>
         <thead>
-            <tr><th>Αρωματική Ουσία</th><th style="text-align:right">Γραμμάρια (g)</th></tr>
+            <tr style="color:#00d4ff"><th>Ουσία</th><th style="text-align:right">Γραμμάρια (g)</th></tr>
         </thead>
-        <tbody id="recipe-table">
-            </tbody>
+        <tbody id="recipe-table"></tbody>
     </table>
 
-    <p style="font-size:0.75rem; color:#666; font-style:italic; margin-top:10px;" class="no-print">Οδηγία: Διάλυση 4g Blend σε 1kg Καθαρής Αλκοόλης 95°.</p>
-
-    <hr style="border:0; border-top:1px solid #333; margin: 15px 0;" class="no-print">
-
     <div class="no-print">
-        <label>📝 ΣΗΜΕΙΩΣΕΙΣ ΠΑΡΤΙΔΑΣ / ΗΜΕΡΟΜΗΝΙΑ</label>
-        <textarea id="notesArea" placeholder="π.χ. Batch #001 - 15/05/2024 - Δοκιμή..."></textarea>
+        <textarea id="notesArea" placeholder="Σημειώσεις παρτίδας..."></textarea>
     </div>
     
     <div id="printNotesDisplay">
-        <strong>Σημειώσεις Παρτίδας:</strong><br>
-        <span id="printNotesContent"></span>
+        <strong>Σημειώσεις:</strong><br><span id="printNotesContent"></span>
     </div>
 
     <div class="btn-group no-print">
-        <button onclick="saveNotes()" class="btn-secondary">💾 Αποθήκευση Σημειώσεων</button>
+        <button onclick="saveNotes()" class="btn-secondary">💾 Αποθήκευση</button>
         <button onclick="window.print()" class="btn-main">🖨️ Εκτύπωση / PDF</button>
     </div>
-
 </div>
 
 <script>
-    // Αναλογίες ουσιών για 4g Master Blend (που αντιστοιχούν σε 1kg αλκοόλης)
     const recipe = [
         { name: "Citral", factor: 1.92 },
         { name: "Cinnamic Aldehyde", factor: 0.48 },
@@ -124,22 +98,20 @@
     ];
 
     function checkPass() {
-        if(document.getElementById('pass').value === '1234') { // <--- Ο Κωδικός σου
+        if(document.getElementById('pass').value === '1234') {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app-screen').style.display = 'block';
-            loadNotes(); // Φόρτωσε τις αποθηκευμένες σημειώσεις
+            loadNotes();
             calculate();
         } else { alert('Λάθος Κωδικός!'); }
     }
 
     function calculate() {
-        // 1. Υπολογισμός δόσης για σόδα
         let liters = document.getElementById('sodaLiters').value || 0;
         document.getElementById('aroma-needed').innerText = (liters * 1).toFixed(1);
 
-        // 2. Υπολογισμός ουσιών για τη βάση
         let baseGrams = document.getElementById('baseGrams').value || 0;
-        document.getElementById('baseGramsPrint').innerText = baseGrams; // Για την εκτύπωση
+        document.getElementById('baseGramsPrint').innerText = baseGrams;
         let ratio = baseGrams / 1000;
         
         let tableHTML = "";
@@ -150,27 +122,22 @@
         document.getElementById('recipe-table').innerHTML = tableHTML;
     }
 
-    // Λειτουργίες Σημειώσεων (LocalStorage)
     function saveNotes() {
-        const notes = document.getElementById('notesArea').value;
-        localStorage.setItem('mavridisColaNotes', notes);
-        alert('Οι σημειώσεις αποθηκεύτηκαν στο κινητό!');
+        localStorage.setItem('mavridisColaNotes', document.getElementById('notesArea').value);
+        alert('Αποθηκεύτηκαν!');
     }
 
     function loadNotes() {
-        const savedNotes = localStorage.getItem('mavridisColaNotes');
-        if(savedNotes) {
-            document.getElementById('notesArea').value = savedNotes;
-            document.getElementById('printNotesContent').innerText = savedNotes; // Για την εκτύπωση
+        const sn = localStorage.getItem('mavridisColaNotes');
+        if(sn) {
+            document.getElementById('notesArea').value = sn;
+            document.getElementById('printNotesContent').innerText = sn;
         }
     }
     
-    // Ενημέρωση σημειώσεων εκτύπωσης σε κάθε αλλαγή
     document.getElementById('notesArea').addEventListener('input', function() {
         document.getElementById('printNotesContent').innerText = this.value;
     });
-
 </script>
-
 </body>
 </html>
