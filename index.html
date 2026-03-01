@@ -3,98 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mavridis Crystal Cola Pro</title>
+    <title>Mavridis Crystal Cola - Master Lab</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #e0e0e0; text-align: center; padding: 20px; }
-        .container { background: #1e1e1e; padding: 20px; border-radius: 15px; max-width: 450px; margin: auto; border: 1px solid #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.2); }
-        h2 { color: #00d4ff; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        input { width: 80%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #444; background: #2a2a2a; color: white; font-size: 1.1rem; text-align: center; }
-        .calc-box { background: #252525; padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 5px dotted #00d4ff; }
-        table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: 0.95rem; }
-        td, th { padding: 12px; border-bottom: 1px solid #333; text-align: left; }
+        body { font-family: sans-serif; background: #121212; color: #eee; text-align: center; padding: 15px; }
+        .container { background: #1e1e1e; padding: 20px; border-radius: 15px; max-width: 450px; margin: auto; border: 1px solid #00d4ff; }
+        h2 { color: #00d4ff; font-size: 1.4rem; }
+        .calc-section { background: #252525; padding: 15px; border-radius: 10px; margin: 15px 0; border-bottom: 3px solid #00d4ff; }
+        input { width: 70%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: #00d4ff; font-size: 1.2rem; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        th, td { padding: 10px; border-bottom: 1px solid #333; text-align: left; }
         .val { color: #00d4ff; font-weight: bold; text-align: right; }
-        button { background: #00d4ff; color: #000; padding: 12px 25px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #008fb3; }
-        #login-screen { display: block; }
+        button { background: #00d4ff; color: #000; padding: 12px 25px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
         #app-screen { display: none; }
-        .label { font-size: 0.9rem; color: #888; }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <h2>🔒 Mavridis Private Access</h2>
-    <p>Δώσε τον κωδικό για την Crystal Cola</p>
+    <h2>🔒 Mavridis Crystal Login</h2>
     <input type="password" id="pass" placeholder="Κωδικός">
-    <br>
-    <button onclick="checkPass()">Είσοδος</button>
+    <br><button onclick="checkPass()">Είσοδος</button>
 </div>
 
 <div id="app-screen" class="container">
-    <h2>💎 Crystal Cola Calculator</h2>
-    
-    <div class="calc-box">
-        <p class="label">ΠΟΣΟΤΗΤΑ ΣΟΔΑΣ ΠΟΥ ΘΑ ΦΤΙΑΞΕΙΣ</p>
-        <input type="number" id="liters" placeholder="Λίτρα (L)" oninput="calculate()">
-        <p>Πρέπει να ρίξεις: <br><span id="aroma-total" style="font-size: 2rem; color: #00d4ff;">0</span> <span style="color:#00d4ff">ml Αρωματισμένης Αλκοόλης</span></p>
+    <h2>💎 Crystal Cola Master Lab</h2>
+
+    <div class="calc-section">
+        <label>1. ΠΟΣΑ ΛΙΤΡΑ (L) ΣΟΔΑΣ ΘΑ ΦΤΙΑΞΕΙΣ;</label>
+        <input type="number" id="sodaLiters" placeholder="π.χ. 5" oninput="calculate()">
+        <p>Πρόσθεσε: <span id="aroma-needed" class="val" style="font-size:1.5rem">0</span> ml Αρώματος</p>
     </div>
 
-    <hr style="border: 0.5px solid #333;">
+    <div class="calc-section">
+        <label>2. ΠΟΣΑ ΓΡΑΜΜΑΡΙΑ (g) ΒΑΣΗΣ ΘΕΛΕΙΣ ΝΑ ΦΤΙΑΞΕΙΣ;</label>
+        <input type="number" id="baseGrams" value="1000" oninput="calculate()">
+        <p style="font-size:0.8rem; color:#888;">(Αυτό υπολογίζει τις ουσίες μέσα στην αλκοόλη)</p>
+    </div>
 
-    <h3>⚗️ Master Blend Recipe</h3>
-    <p class="label">ΠΟΣΟΤΗΤΑ BLEND ΠΟΥ ΘΑ ΠΑΡΑΣΚΕΥΑΣΕΙΣ (g)</p>
-    <input type="number" id="blendAmount" value="10" oninput="calculate()">
-    
     <table>
         <thead>
-            <tr style="color: #888;"><th>Ουσία (10%)</th><th style="text-align: right;">Γραμμάρια (g)</th></tr>
+            <tr style="color:#00d4ff"><th>Αρωματική Ουσία</th><th style="text-align:right">Γραμμάρια (g)</th></tr>
         </thead>
-        <tbody>
-            <tr><td>Citral</td><td class="val" id="r1">4.80</td></tr>
-            <tr><td>Cinnamic Aldehyde</td><td class="val" id="r2">1.20</td></tr>
-            <tr><td>Eugenol</td><td class="val" id="r3">0.80</td></tr>
-            <tr><td>Vanillin (Booster)</td><td class="val" id="r4">0.50</td></tr>
-            <tr><td>Ethyl Linalool</td><td class="val" id="r5">0.60</td></tr>
-            <tr><td>Limonene</td><td class="val" id="r6">0.50</td></tr>
-            <tr><td>Tea Tree Effect</td><td class="val" id="r7">1.40</td></tr>
-            <tr><td>Methyl Anthranilate</td><td class="val" id="r8">0.10</td></tr>
-            <tr><td>Fenchyl Alcohol</td><td class="val" id="r9">0.10</td></tr>
-        </tbody>
+        <tbody id="recipe-table">
+            </tbody>
     </table>
-
-    <div style="margin-top: 20px; font-size: 0.8rem; color: #666; font-style: italic;">
-        Οδηγία: Διάλυση 4g Blend σε 1kg Καθαρής Αλκοόλης 95°.
-    </div>
 </div>
 
 <script>
-    // Σταθερές αναλογίες για 10g Blend
-    const baseRecipe = [4.80, 1.20, 0.80, 0.50, 0.60, 0.50, 1.40, 0.10, 0.10];
+    // Αναλογίες ουσιών για 4g Master Blend (που αντιστοιχούν σε 1kg αλκοόλης)
+    // Τα νούμερα είναι προσαρμοσμένα ώστε το άθροισμα να είναι 4g
+    const recipe = [
+        { name: "Citral", factor: 1.92 },
+        { name: "Cinnamic Aldehyde", factor: 0.48 },
+        { name: "Eugenol", factor: 0.32 },
+        { name: "Vanillin (Booster)", factor: 0.20 },
+        { name: "Ethyl Linalool", factor: 0.24 },
+        { name: "Limonene", factor: 0.20 },
+        { name: "Tea Tree Effect", factor: 0.56 },
+        { name: "Methyl Anthranilate", factor: 0.04 },
+        { name: "Fenchyl Alcohol", factor: 0.04 }
+    ];
 
     function checkPass() {
-        const p = document.getElementById('pass').value;
-        if(p === '1234') { // <--- Ο Κωδικός σου
+        if(document.getElementById('pass').value === '1234') {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app-screen').style.display = 'block';
-        } else {
-            alert('Λάθος Κωδικός!');
-        }
+            calculate();
+        } else { alert('Λάθος Κωδικός!'); }
     }
 
     function calculate() {
-        // 1. Υπολογισμός ml αρώματος για τη σόδα (Δόση: 1ml ανά 1L)
-        let l = document.getElementById('liters').value;
-        if (l < 0) l = 0;
-        document.getElementById('aroma-total').innerText = (l * 1).toFixed(1);
+        // 1. Υπολογισμός δόσης για σόδα
+        let liters = document.getElementById('sodaLiters').value || 0;
+        document.getElementById('aroma-needed').innerText = (liters * 1).toFixed(1);
 
-        // 2. Υπολογισμός γραμμαρίων για το Master Blend
-        let b = document.getElementById('blendAmount').value;
-        if (b < 0) b = 0;
+        // 2. Υπολογισμός ουσιών για τη βάση
+        let baseGrams = document.getElementById('baseGrams').value || 0;
+        let ratio = baseGrams / 1000; // Βάση με αναλογία 4g blend / 1kg αλκοόλ
         
-        for (let i = 0; i < baseRecipe.length; i++) {
-            let result = (baseRecipe[i] * b / 10).toFixed(2);
-            document.getElementById('r' + (i+1)).innerText = result;
-        }
+        let tableHTML = "";
+        recipe.forEach(item => {
+            let amount = (item.factor * ratio).toFixed(3);
+            tableHTML += `<tr><td>${item.name}</td><td class="val">${amount}g</td></tr>`;
+        });
+        document.getElementById('recipe-table').innerHTML = tableHTML;
     }
 </script>
 
