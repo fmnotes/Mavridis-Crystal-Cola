@@ -1,82 +1,79 @@
-Τέλεια! Μόλις το κάνεις Public, η εφαρμογή σου θα είναι προσβάσιμη από παντού με έναν απλό σύνδεσμο.
-
-Ακολουθεί ο τελικός κώδικας για το αρχείο index.html. Τον έφτιαξα να φαίνεται ακόμα πιο ωραίος στο κινητό, με μεγάλα κουμπιά και καθαρά γράμματα για να τον δουλεύεις εύκολα την ώρα της παραγωγής.
-
-📋 Ο Κώδικας για το index.html
-Κάνε αντιγραφή όλο το παρακάτω πλαίσιο και επικόλληση μέσα στο αρχείο σου στο GitHub:
-
-HTML
 <!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mavridis Crystal Cola v1.1</title>
+    <title>Mavridis Crystal Cola Pro</title>
     <style>
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #f0f0f0; text-align: center; padding: 15px; margin: 0; }
-        .container { background: #1a1a1a; padding: 25px; border-radius: 25px; max-width: 400px; margin: 20px auto; border: 1px solid #00d4ff; box-shadow: 0 15px 35px rgba(0,0,0,0.7); }
-        h2 { color: #00d4ff; font-size: 1.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        p { color: #bbb; margin-bottom: 20px; }
-        input { width: 100%; padding: 15px; margin: 15px 0; border-radius: 12px; border: 1px solid #333; background: #252525; color: white; font-size: 1.4rem; text-align: center; box-sizing: border-box; }
-        input:focus { border-color: #00d4ff; outline: none; box-shadow: 0 0 10px rgba(0,212,255,0.3); }
-        .result-box { background: #222; padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 6px solid #00d4ff; }
-        .result-label { font-size: 1rem; color: #888; margin-bottom: 5px; }
-        .result-val { color: #00d4ff; font-size: 2.2rem; font-weight: bold; }
-        table { width: 100%; margin-top: 25px; border-collapse: collapse; background: #151515; border-radius: 10px; overflow: hidden; }
-        td, th { padding: 12px 15px; border-bottom: 1px solid #222; text-align: left; font-size: 0.9rem; }
-        .val { color: #00d4ff; font-weight: bold; text-align: right; font-family: monospace; font-size: 1rem; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #e0e0e0; text-align: center; padding: 20px; }
+        .container { background: #1e1e1e; padding: 20px; border-radius: 15px; max-width: 450px; margin: auto; border: 1px solid #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.2); }
+        h2 { color: #00d4ff; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        input { width: 80%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #444; background: #2a2a2a; color: white; font-size: 1.1rem; text-align: center; }
+        .calc-box { background: #252525; padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 5px dotted #00d4ff; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: 0.95rem; }
+        td, th { padding: 12px; border-bottom: 1px solid #333; text-align: left; }
+        .val { color: #00d4ff; font-weight: bold; text-align: right; }
+        button { background: #00d4ff; color: #000; padding: 12px 25px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #008fb3; }
         #login-screen { display: block; }
         #app-screen { display: none; }
-        button { background: #00d4ff; color: #000; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; cursor: pointer; width: 100%; transition: 0.3s; }
-        button:active { transform: scale(0.98); background: #00b8e6; }
-        .footer-note { font-size: 0.75rem; color: #555; margin-top: 25px; line-height: 1.6; border-top: 1px solid #222; padding-top: 15px; }
-        .badge { background: #00d4ff1a; color: #00d4ff; padding: 4px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; vertical-align: middle; }
+        .label { font-size: 0.9rem; color: #888; }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <h2>🔒 Mavridis</h2>
-    <p>Εισάγετε τον κωδικό για την Crystal Cola</p>
-    <input type="password" id="pass" placeholder="ΚΩΔΙΚΟΣ" inputmode="numeric">
-    <button onclick="checkPass()">ΕΙΣΟΔΟΣ ΣΤΗΝ ΠΑΡΑΓΩΓΗ</button>
+    <h2>🔒 Mavridis Private Access</h2>
+    <p>Δώσε τον κωδικό για την Crystal Cola</p>
+    <input type="password" id="pass" placeholder="Κωδικός">
+    <br>
+    <button onclick="checkPass()">Είσοδος</button>
 </div>
 
 <div id="app-screen" class="container">
-    <h2>💎 Crystal Cola <small style="font-size:0.5em; vertical-align: middle;">v1.1</small></h2>
+    <h2>💎 Crystal Cola Calculator</h2>
     
-    <div class="result-box">
-        <div class="result-label">ΛΙΤΡΑ ΣΟΔΑΣ (L)</div>
-        <input type="number" id="liters" placeholder="π.χ. 10" oninput="calculate()" step="0.1" inputmode="decimal">
-        <div class="result-label">ΔΟΣΗ ΑΡΩΜΑΤΟΣ</div>
-        <div class="result-val"><span id="aroma-total">0.0</span> ml</div>
+    <div class="calc-box">
+        <p class="label">ΠΟΣΟΤΗΤΑ ΣΟΔΑΣ ΠΟΥ ΘΑ ΦΤΙΑΞΕΙΣ</p>
+        <input type="number" id="liters" placeholder="Λίτρα (L)" oninput="calculate()">
+        <p>Πρέπει να ρίξεις: <br><span id="aroma-total" style="font-size: 2rem; color: #00d4ff;">0</span> <span style="color:#00d4ff">ml Αρωματισμένης Αλκοόλης</span></p>
     </div>
 
-    <h3>📋 Master Blend (10g)</h3>
+    <hr style="border: 0.5px solid #333;">
+
+    <h3>⚗️ Master Blend Recipe</h3>
+    <p class="label">ΠΟΣΟΤΗΤΑ BLEND ΠΟΥ ΘΑ ΠΑΡΑΣΚΕΥΑΣΕΙΣ (g)</p>
+    <input type="number" id="blendAmount" value="10" oninput="calculate()">
+    
     <table>
-        <tr><td>Citral 10%</td><td class="val">4.80g</td></tr>
-        <tr><td>Cinnamic 10%</td><td class="val">1.20g</td></tr>
-        <tr><td>Eugenol 10%</td><td class="val">0.80g</td></tr>
-        <tr><td>Vanillin 10% <span class="badge">BST</span></td><td class="val">0.50g</td></tr>
-        <tr><td>Ethyl Linalool 10%</td><td class="val">0.60g</td></tr>
-        <tr><td>Limonene 10%</td><td class="val">0.50g</td></tr>
-        <tr><td>Tea Tree Effect 10%</td><td class="val">1.40g</td></tr>
-        <tr><td>M. Anthranilate <span class="badge">BST</span></td><td class="val">0.10g</td></tr>
-        <tr><td>Fenchyl Alcohol 10%</td><td class="val">0.10g</td></tr>
+        <thead>
+            <tr style="color: #888;"><th>Ουσία (10%)</th><th style="text-align: right;">Γραμμάρια (g)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Citral</td><td class="val" id="r1">4.80</td></tr>
+            <tr><td>Cinnamic Aldehyde</td><td class="val" id="r2">1.20</td></tr>
+            <tr><td>Eugenol</td><td class="val" id="r3">0.80</td></tr>
+            <tr><td>Vanillin (Booster)</td><td class="val" id="r4">0.50</td></tr>
+            <tr><td>Ethyl Linalool</td><td class="val" id="r5">0.60</td></tr>
+            <tr><td>Limonene</td><td class="val" id="r6">0.50</td></tr>
+            <tr><td>Tea Tree Effect</td><td class="val" id="r7">1.40</td></tr>
+            <tr><td>Methyl Anthranilate</td><td class="val" id="r8">0.10</td></tr>
+            <tr><td>Fenchyl Alcohol</td><td class="val" id="r9">0.10</td></tr>
+        </tbody>
     </table>
 
-    <div class="footer-note">
-        <strong>ΟΔΗΓΙΕΣ:</strong><br>
-        1. Φτιάξε το Master Blend (10g).<br>
-        2. Διάλυσε 4g Blend σε 1kg Καθαρής Αλκοόλης 95°.<br>
-        3. Χρησιμοποίησε 1ml αρωματισμένης αλκοόλης ανά 1L σόδας.
+    <div style="margin-top: 20px; font-size: 0.8rem; color: #666; font-style: italic;">
+        Οδηγία: Διάλυση 4g Blend σε 1kg Καθαρής Αλκοόλης 95°.
     </div>
 </div>
 
 <script>
+    // Σταθερές αναλογίες για 10g Blend
+    const baseRecipe = [4.80, 1.20, 0.80, 0.50, 0.60, 0.50, 1.40, 0.10, 0.10];
+
     function checkPass() {
         const p = document.getElementById('pass').value;
-        if(p === '1234') { 
+        if(p === '1234') { // <--- Ο Κωδικός σου
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app-screen').style.display = 'block';
         } else {
@@ -85,10 +82,19 @@ HTML
     }
 
     function calculate() {
+        // 1. Υπολογισμός ml αρώματος για τη σόδα (Δόση: 1ml ανά 1L)
         let l = document.getElementById('liters').value;
-        if(l < 0 || l === "") l = 0;
-        // Υπολογισμός: 1ml ανά λίτρο
-        document.getElementById('aroma-total').innerText = parseFloat(l).toFixed(1);
+        if (l < 0) l = 0;
+        document.getElementById('aroma-total').innerText = (l * 1).toFixed(1);
+
+        // 2. Υπολογισμός γραμμαρίων για το Master Blend
+        let b = document.getElementById('blendAmount').value;
+        if (b < 0) b = 0;
+        
+        for (let i = 0; i < baseRecipe.length; i++) {
+            let result = (baseRecipe[i] * b / 10).toFixed(2);
+            document.getElementById('r' + (i+1)).innerText = result;
+        }
     }
 </script>
 
