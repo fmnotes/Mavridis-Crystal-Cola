@@ -8,8 +8,16 @@
         body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #eee; text-align: center; padding: 10px; margin: 0; }
         .container { background: #1e1e1e; padding: 15px; border-radius: 20px; max-width: 480px; margin: 10px auto; border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.1); }
         
-        /* Το νέο "Λογότυπο" με Emoji για να εμφανίζεται πάντα */
-        .logo-emoji { font-size: 50px; margin-top: 10px; display: block; }
+        /* Στυλ για τη νέα φωτογραφία Crystal Cola */
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px; /* Ελαφρώς στρογγυλεμένες γωνίες */
+            margin: 15px auto;
+            display: block;
+            border: 2px solid #00d4ff;
+            object-fit: cover;
+        }
         
         h2 { color: #00d4ff; font-size: 1.3rem; margin-top: 5px; }
         .calc-section { background: #252525; padding: 12px; border-radius: 12px; margin: 10px 0; border-bottom: 3px solid #00d4ff; }
@@ -30,7 +38,7 @@
         #app-screen { display: none; }
 
         @media print {
-            .no-print, #login-screen, .btn-group, label, input { display: none !important; }
+            .no-print, #login-screen, .btn-group, label, input, .logo-image { display: none !important; }
             .container { border: none; }
             #printNotesDisplay { display: block !important; }
         }
@@ -40,7 +48,7 @@
 <body>
 
 <div id="login-screen" class="container">
-    <span class="logo-emoji">⚗️</span>
+    <img src="crystal_cola.png" alt="Mavridis Crystal Cola" class="logo-image">
     <h2>Mavridis Private Lab</h2>
     <input type="password" id="pass" placeholder="Κωδικός">
     <br>
@@ -48,7 +56,7 @@
 </div>
 
 <div id="app-screen" class="container">
-    <span class="logo-emoji">💎</span>
+    <img src="crystal_cola.png" alt="Mavridis Crystal Cola" class="logo-image">
     <h2>Crystal Cola Master Lab Pro</h2>
 
     <div class="calc-section no-print">
