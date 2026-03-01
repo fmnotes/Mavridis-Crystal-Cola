@@ -6,68 +6,86 @@
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Crystal Cola">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#0a0e14">
-    <link rel="apple-touch-icon" href="crystal_cola.jpg">
+
+    <title>Mavridis Crystal Cola Pro</title>
 
     <style>
-        :root { --main-blue: #00d4ff; --dark-bg: #0a0e14; --card-bg: #161b22; }
+        :root { --blue: #00d4ff; --bg: #0a0e14; --card: #161b22; }
         
         body { 
             font-family: -apple-system, system-ui, sans-serif;
-            background: var(--dark-bg); color: #eee; text-align: center; margin: 0; 
+            background: var(--bg); color: #eee; text-align: center; margin: 0; 
             padding: env(safe-area-inset-top) 15px 40px;
-            height: 100vh; overflow-y: auto;
         }
 
-        .container { background: var(--card-bg); padding: 20px; border-radius: 25px; max-width: 450px; margin: 15px auto; border: 1px solid #30363d; }
-        .logo { width: 140px; height: 140px; margin: 0 auto 10px; border-radius: 25px; border: 2px solid var(--main-blue); object-fit: cover; display:block; }
-        input { width: 85%; padding: 15px; border-radius: 12px; border: 1px solid #30363d; background: #010409; color: var(--main-blue); font-size: 1.6rem; text-align: center; margin: 10px 0; outline: none; }
+        .container { background: var(--card); padding: 25px; border-radius: 30px; max-width: 450px; margin: 20px auto; border: 1px solid #30363d; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; border-radius: 15px; overflow: hidden; }
-        td, th { padding: 12px; border-bottom: 1px solid #30363d; text-align: left; }
-        .val { color: var(--main-blue); font-weight: bold; text-align: right; font-family: monospace; font-size: 1.2rem; }
+        /* ΕΙΚΟΝΑ ΜΕ ΠΛΗΡΕΣ LINK ΓΙΑ ΝΑ ΜΗΝ ΧΑΝΕΤΑΙ */
+        .logo { 
+            width: 150px; height: 150px; margin: 0 auto 15px; 
+            border-radius: 25px; border: 3px solid var(--blue); 
+            object-fit: cover; display: block;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+        }
         
-        button { background: var(--main-blue); color: #000; padding: 18px; border: none; border-radius: 18px; font-weight: bold; width: 90%; margin-top: 20px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3); }
+        input { 
+            width: 90%; padding: 18px; border-radius: 15px; border: 1px solid #30363d; 
+            background: #010409; color: var(--blue); font-size: 1.8rem; 
+            text-align: center; margin: 15px 0; outline: none; font-weight: bold;
+        }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #0d1117; border-radius: 15px; overflow: hidden; }
+        th, td { padding: 15px; border-bottom: 1px solid #30363d; text-align: left; }
+        th { color: var(--blue); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .val { color: var(--blue); font-weight: bold; text-align: right; font-family: monospace; font-size: 1.3rem; }
+        
+        button { 
+            background: var(--blue); color: #000; padding: 20px; border: none; 
+            border-radius: 20px; font-weight: bold; width: 100%; margin-top: 25px; 
+            font-size: 1.2rem; cursor: pointer;
+        }
 
         #login-screen { display: block; padding-top: 15vh; }
         #app-screen { display: none; }
+
+        label { color: #8b949e; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <img src="crystal_cola.jpg" class="logo">
-    <h2 style="color:var(--main-blue); letter-spacing: 2px;">MAVRIDIS LAB</h2>
+    <img src="https://fmnotes.github.io/Mavridis-Crystal-Cola/crystal_cola.jpg" class="logo" alt="Crystal Cola Logo">
+    <h2 style="color:var(--blue); letter-spacing: 3px;">MAVRIDIS LAB</h2>
     <input type="password" id="pass" placeholder="ΚΩΔΙΚΟΣ">
     <button onclick="checkPass()">ΕΙΣΟΔΟΣ</button>
 </div>
 
 <div id="app-screen" class="container">
-    <img src="crystal_cola.jpg" class="logo">
-    <h2 style="color:var(--main-blue); letter-spacing: 2px;">CRYSTAL COLA PRO</h2>
+    <img src="https://fmnotes.github.io/Mavridis-Crystal-Cola/crystal_cola.jpg" class="logo" alt="Crystal Cola Logo">
+    <h2 style="color:var(--blue); letter-spacing: 2px; margin-bottom: 20px;">CRYSTAL COLA PRO</h2>
     
-    <div style="background:#0d1117; padding:15px; border-radius:20px; margin-bottom:15px; border-left:6px solid var(--main-blue)">
-        <small style="color:#8b949e; font-weight:bold">ΛΙΤΡΑ ΣΟΔΑΣ (L)</small><br>
+    <div style="background:#0d1117; padding:15px; border-radius:20px; margin-bottom:15px; border-left:8px solid var(--blue)">
+        <label>ΛΙΤΡΑ ΣΟΔΑΣ (L)</label><br>
         <input type="number" id="sodaLiters" placeholder="0" oninput="calculate()">
-        <p style="margin:10px 0; font-size:1.1rem">ΔΟΣΗ: <span id="aroma-needed" class="val" style="font-size:1.8rem">0</span> <span class="val">ml</span></p>
+        <p style="margin:10px 0; font-size:1.2rem">ΔΟΣΗ ΑΡΩΜΑΤΟΣ: <span id="aroma-needed" class="val" style="font-size:2rem">0</span> <span class="val">ml</span></p>
     </div>
 
-    <div style="background:#0d1117; padding:15px; border-radius:20px; margin-bottom:15px; border-left:6px solid #444">
-        <small style="color:#8b949e; font-weight:bold">ΓΡΑΜΜΑΡΙΑ ΒΑΣΗΣ (g)</small><br>
+    <div style="background:#0d1117; padding:15px; border-radius:20px; margin-bottom:15px; border-left:8px solid #444">
+        <label>ΓΡΑΜΜΑΡΙΑ ΒΑΣΗΣ (g)</label><br>
         <input type="number" id="baseGrams" value="100" oninput="calculate()">
     </div>
 
     <table>
-        <thead><tr style="color:var(--main-blue); font-size:0.75rem"><th>ΟΥΣΙΑ</th><th style="text-align:right">ΓΡΑΜΜΑΡΙΑ (g)</th></tr></thead>
+        <thead><tr style="color:var(--blue)"><th>ΟΥΣΙΑ</th><th style="text-align:right">g</th></tr></thead>
         <tbody id="recipe-table"></tbody>
     </table>
-    <button onclick="location.reload()" style="background:#21262d; color:#eee; width:50%; padding:10px; margin-top:30px; font-size:0.8rem">ΕΞΟΔΟΣ / LOGOUT</button>
+    
+    <button onclick="location.reload()" style="background:#21262d; color:#eee; font-size:0.9rem; margin-top:30px;">ΕΞΟΔΟΣ (LOGOUT)</button>
 </div>
 
 <script>
-    // ΣΥΝΤΑΓΗ CRYSTAL COLA
     const recipe = [
         { name: "Citral", factor: 1.92 }, { name: "Cinnamic Aldehyde", factor: 0.48 },
         { name: "Eugenol", factor: 0.32 }, { name: "Vanillin", factor: 0.20 },
@@ -94,11 +112,6 @@
             tableHTML += `<tr><td>${item.name}</td><td class="val">${(item.factor * ratio).toFixed(3)}g</td></tr>`;
         });
         document.getElementById('recipe-table').innerHTML = tableHTML;
-    }
-
-    // ΚΟΛΠΟ ΓΙΑ ΚΑΘΑΡΙΣΜΟ CACHE
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(function() {});
     }
 </script>
 </body>
