@@ -1,89 +1,130 @@
+HTML
 <!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Crystal Cola">
+    <meta name="mobile-web-app-capable" content="yes">
+    
     <title>Mavridis Crystal Cola Pro</title>
-    <link rel="apple-touch-icon" href="crystal_cola.jpg">
-    <link rel="icon" type="image/jpeg" href="crystal_cola.jpg">
     
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #eee; text-align: center; padding: 10px; margin: 0; }
-        .container { background: #1e1e1e; padding: 15px; border-radius: 20px; max-width: 480px; margin: 10px auto; border: 1px solid #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.1); }
-        
-        /* Στυλ Φωτογραφίας */
-        .logo { width: 120px; height: 120px; margin-top: 10px; border-radius: 50%; border: 3px solid #00d4ff; object-fit: cover; box-shadow: 0 0 10px #00d4ff; }
-        
-        h2 { color: #00d4ff; font-size: 1.3rem; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .calc-section { background: #252525; padding: 12px; border-radius: 12px; margin: 10px 0; border-bottom: 3px solid #00d4ff; }
-        label { font-size: 0.85rem; color: #aaa; display: block; margin-bottom: 5px; }
-        input { width: 80%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: #00d4ff; font-size: 1.2rem; text-align: center; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
-        th, td { padding: 10px; border-bottom: 1px solid #333; text-align: left; }
-        th { color: #00d4ff; font-size: 0.8rem; }
-        .val { color: #00d4ff; font-weight: bold; text-align: right; }
-        
-        #notesArea { width: 90%; height: 80px; background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 8px; padding: 10px; margin-top: 10px; font-family: inherit; }
-        .btn-group { margin-top: 15px; display: flex; justify-content: space-around; gap: 10px; }
-        button { padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-main { background: #00d4ff; color: #000; }
-        .btn-secondary { background: #333; color: #eee; border: 1px solid #444; }
+        :root {
+            --main-blue: #00d4ff;
+            --dark-bg: #0a0e14;
+            --card-bg: #161b22;
+        }
 
-        #login-screen { display: block; padding-top: 50px; }
+        /* Full screen χωρίς περιθώρια για αίσθηση app */
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background: var(--dark-bg); 
+            color: #eee; 
+            text-align: center; 
+            padding: 10px; 
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container { 
+            background: var(--card-bg); 
+            padding: 20px; 
+            border-radius: 25px; 
+            max-width: 480px; 
+            margin: 10px auto; 
+            border: 1px solid #30363d; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        
+        .logo { 
+            width: 140px; 
+            height: 140px; 
+            margin: 0 auto 10px; 
+            border-radius: 20px; 
+            border: 2px solid var(--main-blue); 
+            object-fit: cover; 
+            display: block;
+        }
+        
+        h2 { color: var(--main-blue); font-size: 1.3rem; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .calc-section { 
+            background: #0d1117; 
+            padding: 15px; 
+            border-radius: 15px; 
+            margin: 12px 0; 
+            border-left: 5px solid var(--main-blue); 
+        }
+
+        input { 
+            width: 90%; 
+            padding: 12px; 
+            border-radius: 10px; 
+            border: 1px solid #30363d; 
+            background: #010409; 
+            color: var(--main-blue); 
+            font-size: 1.4rem; 
+            text-align: center; 
+            outline: none; 
+        }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #0d1117; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 12px; border-bottom: 1px solid #30363d; text-align: left; font-size: 0.9rem; }
+        th { color: var(--main-blue); font-size: 0.7rem; }
+        .val { color: var(--main-blue); font-weight: bold; text-align: right; font-family: monospace; font-size: 1.1rem; }
+        
+        .btn-group { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
+        button { padding: 12px 20px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
+        .btn-main { background: var(--main-blue); color: #000; }
+        .btn-secondary { background: #21262d; color: #c9d1d9; }
+
+        #login-screen { display: block; padding-top: 15vh; }
         #app-screen { display: none; }
 
-        @media print {
-            .no-print, #login-screen, .btn-group, label, input { display: none !important; }
-            .container { border: none; box-shadow: none; }
-            h2 { color: black; border-bottom: 2px solid black; }
-            table { border: 1px solid black; color: black; }
-            th, td { border-bottom: 1px solid black; color: black; }
-            .val { color: black; }
-            .logo { width: 80px; height: 80px; }
-        }
+        @media print { .no-print { display: none !important; } }
     </style>
 </head>
 <body>
 
 <div id="login-screen" class="container">
-    <img src="crystal_cola.jpg" alt="Logo" class="logo">
-    <h2>Mavridis Private Lab</h2>
+    <img src="crystal_cola.jpg" alt="Crystal Cola" class="logo">
+    <h2>Mavridis Lab</h2>
     <input type="password" id="pass" placeholder="Κωδικός">
-    <br>
-    <button onclick="checkPass()" class="btn-main">Είσοδος</button>
+    <div class="btn-group">
+        <button onclick="checkPass()" class="btn-main">ΕΙΣΟΔΟΣ</button>
+    </div>
 </div>
 
 <div id="app-screen" class="container">
-    <img src="crystal_cola.jpg" alt="Logo" class="logo">
-    <h2>💎 Crystal Cola Master Lab</h2>
+    <img src="crystal_cola.jpg" alt="Crystal Cola" class="logo">
+    <h2>💎 Crystal Cola Pro</h2>
 
     <div class="calc-section no-print">
-        <label>1. ΛΙΤΡΑ ΣΟΔΑΣ (L)</label>
-        <input type="number" id="sodaLiters" placeholder="π.χ. 5" oninput="calculate()">
-        <p>Δόση: <span id="aroma-needed" class="val" style="font-size:1.5rem">0</span> <span class="val">ml Αρώματος</span></p>
+        <label style="font-size: 0.7rem; color: #8b949e; display: block; margin-bottom: 5px;">ΛΙΤΡΑ ΣΟΔΑΣ (L)</label>
+        <input type="number" id="sodaLiters" placeholder="0" oninput="calculate()">
+        <p style="margin:10px 0;">Δόση: <span id="aroma-needed" class="val" style="font-size:1.6rem">0</span> <span class="val">ml</span></p>
     </div>
 
     <div class="calc-section">
-        <label class="no-print">2. ΓΡΑΜΜΑΡΙΑ ΤΕΛΙΚΗΣ ΒΑΣΗΣ (g)</label>
+        <label class="no-print" style="font-size: 0.7rem; color: #8b949e; display: block; margin-bottom: 5px;">ΓΡΑΜΜΑΡΙΑ ΒΑΣΗΣ (g)</label>
         <input type="number" id="baseGrams" value="100" oninput="calculate()" class="no-print">
-        <p style="font-weight:bold; margin: 5px 0;">Συνταγή για <span id="baseGramsPrint">100</span>g Βάσης</p>
+        <p style="font-weight:bold; margin: 0; font-size: 0.9rem;">Συνταγή για <span id="baseGramsPrint">100</span>g</p>
     </div>
 
     <table>
         <thead>
-            <tr><th>Ουσία</th><th style="text-align:right">Γραμμάρια (g)</th></tr>
+            <tr><th>Ουσία</th><th style="text-align:right">g</th></tr>
         </thead>
         <tbody id="recipe-table"></tbody>
     </table>
 
-    <div class="no-print">
-        <textarea id="notesArea" placeholder="Σημειώσεις παρτίδας..."></textarea>
-    </div>
-
     <div class="btn-group no-print">
-        <button onclick="saveNotes()" class="btn-secondary">💾 Αποθήκευση</button>
-        <button onclick="window.print()" class="btn-main">🖨️ Εκτύπωση / PDF</button>
+        <button onclick="window.print()" class="btn-secondary">ΕΚΤΥΠΩΣΗ</button>
+        <button onclick="location.reload()" class="btn-secondary">ΕΞΟΔΟΣ</button>
     </div>
 </div>
 
@@ -101,7 +142,7 @@
     ];
 
     function checkPass() {
-        if(document.getElementById('pass').value === 'PANOS3358') {
+        if(document.getElementById('pass').value === '1234') {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app-screen').style.display = 'block';
             calculate();
@@ -111,21 +152,14 @@
     function calculate() {
         let l = document.getElementById('sodaLiters').value || 0;
         document.getElementById('aroma-needed').innerText = (l * 1).toFixed(1);
-
         let g = document.getElementById('baseGrams').value || 0;
         document.getElementById('baseGramsPrint').innerText = g;
         let ratio = g / 1000;
-        
         let tableHTML = "";
         recipe.forEach(item => {
             tableHTML += `<tr><td>${item.name}</td><td class="val">${(item.factor * ratio).toFixed(3)}g</td></tr>`;
         });
         document.getElementById('recipe-table').innerHTML = tableHTML;
-    }
-
-    function saveNotes() {
-        localStorage.setItem('mavridisNotes', document.getElementById('notesArea').value);
-        alert('Αποθηκεύτηκαν!');
     }
 </script>
 </body>
