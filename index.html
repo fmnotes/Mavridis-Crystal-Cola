@@ -1,0 +1,80 @@
+DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mavridis Crystal Cola v1.1</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; text-align: center; padding: 20px; }
+        .container { background: #1e1e1e; padding: 25px; border-radius: 20px; max-width: 450px; margin: auto; border: 1px solid #00d4ff; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h2 { color: #00d4ff; margin-bottom: 20px; }
+        input { width: 90%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #333; background: #2d2d2d; color: white; font-size: 1.2rem; text-align: center; }
+        .result-box { background: #262626; padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #00d4ff; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: 0.95rem; }
+        td, th { padding: 12px; border-bottom: 1px solid #333; text-align: left; }
+        .val { color: #00d4ff; font-weight: bold; text-align: right; }
+        #login-screen { display: block; }
+        #app-screen { display: none; }
+        button { background: #00d4ff; color: #000; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; width: 100%; }
+        .footer { font-size: 0.75rem; color: #666; margin-top: 20px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div id="login-screen" class="container">
+    <h2>🔒 Mavridis Private</h2>
+    <p>Εισάγετε τον κωδικό πρόσβασης:</p>
+    <input type="password" id="pass" placeholder="Κωδικός">
+    <button onclick="checkPass()">ΕΙΣΟΔΟΣ</button>
+</div>
+
+<div id="app-screen" class="container">
+    <h2>💎 Crystal Cola v1.1</h2>
+    
+    <div class="result-box">
+        <p>Πόσα Λίτρα Σόδας θα φτιάξεις;</p>
+        <input type="number" id="liters" placeholder="Λίτρα (π.χ. 10)" oninput="calculate()">
+        <p>Δόση Αρώματος: <span id="aroma-total" style="color:#00d4ff; font-size:1.5rem; font-weight:bold;">0</span> ml</p>
+    </div>
+
+    <h3>📋 Master Blend (10g)</h3>
+    <table>
+        <tr><td>Citral 10%</td><td class="val">4.80g</td></tr>
+        <tr><td>Cinnamic 10%</td><td class="val">1.20g</td></tr>
+        <tr><td>Eugenol 10%</td><td class="val">0.80g</td></tr>
+        <tr><td>Vanillin 10% (Booster)</td><td class="val">0.50g</td></tr>
+        <tr><td>Ethyl Linalool 10%</td><td class="val">0.60g</td></tr>
+        <tr><td>Limonene 10%</td><td class="val">0.50g</td></tr>
+        <tr><td>Tea Tree Effect 10%</td><td class="val">1.40g</td></tr>
+        <tr><td>M. Anthranilate (Booster)</td><td class="val">0.10g</td></tr>
+        <tr><td>Fenchyl Alcohol 10%</td><td class="val">0.10g</td></tr>
+    </table>
+
+    <div class="footer">
+        <strong>Οδηγία Διάλυσης:</strong><br>
+        4g από το παραπάνω Blend σε 1kg Καθαρής Αλκοόλης 95°.<br>
+        <em>Δόση: 1ml αρωματισμένης αλκοόλης ανά 1L σόδας.</em>
+    </div>
+</div>
+
+<script>
+    function checkPass() {
+        const p = document.getElementById('pass').value;
+        if(p === '1234') { // Ο ΚΩΔΙΚΟΣ ΣΟΥ
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app-screen').style.display = 'block';
+        } else {
+            alert('Λάθος Κωδικός!');
+        }
+    }
+
+    function calculate() {
+        let l = document.getElementById('liters').value;
+        if(l < 0) l = 0;
+        // Υπολογισμός: 1ml ανά λίτρο
+        document.getElementById('aroma-total').innerText = (l * 1).toFixed(1);
+    }
+</script>
+
+</body>
+</html>
